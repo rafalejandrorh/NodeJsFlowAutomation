@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2-runtime pm2.ecosystem.config.js",
     "api": "nodemon src/API/index.js",
     "bot": "nodemon src/bot/index.js",
     "all": "nodemon src/bot/index.js && nodemon src/API/index.js",
