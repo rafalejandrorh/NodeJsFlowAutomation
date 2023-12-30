@@ -72,9 +72,9 @@ module.exports = {
         }
     },
     smtpGmail: {
-        host: process.env.MAIL_HOST || 'smtp.gmail.com',
-        port: process.env.MAIL_PORT || 465,
-        user: process.env.MAIL_USER || 'prueba@gmail.com',
-        pass: process.env.MAIL_PASSWORD || '123456789'
+        host: process.env.MAIL_HOST,
+        port: process.env.MAIL_PORT,
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASSWORD
     }
 };
