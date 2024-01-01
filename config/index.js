@@ -23,20 +23,20 @@ module.exports = {
         password: process.env.REDIS_PASSWORD
     },
     postgresql: {
-        host: process.env.POSTGRES_DB_USER,
+        host: process.env.POSTGRES_DB_HOST,
         port: process.env.POSTGRES_DB_PORT,
         database: process.env.POSTGRES_DB_NAME,
         user: process.env.POSTGRES_DB_USER,
         password: process.env.POSTGRES_DB_PASSWORD,
-        url: process.env.POSTGRES_DB_URL
+        url: `postgres://${process.env.POSTGRES_DB_USER}:${process.env.POSTGRES_DB_PASSWORD}@${process.env.POSTGRES_DB_HOST}:${process.env.POSTGRES_DB_PORT}/${process.env.POSTGRES_DB_NAME}`
     },
     mysql: {
-        url: process.env.MYSQL_DB_URL
+        url: `mysql://${process.env.MYSQL_DB_USER}:${process.env.MYSQL_DB_PASSWORD}@${process.env.MYSQL_DB_HOST}:${process.env.MYSQL_DB_PORT}/${process.env.MYSQL_DB_NAME}`
     },
     SDC: {
         mysql: {
             qa: {
-                url: process.env.MYSQL_DB_URL_SDC
+                url: process.env.MYSQL_DB_URL_SDC_QA
             }
         },
         TDP: {
