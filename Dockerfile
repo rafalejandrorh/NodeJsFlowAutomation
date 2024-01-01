@@ -8,11 +8,9 @@ ARG NODE_VERSION=20.9.0
 
 FROM node:${NODE_VERSION}-alpine
 
-# Use production node environment by default.
-# ENV NODE_ENV production
-
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app
+
 RUN npm install pm2 -g
 RUN npm install
 
@@ -35,8 +33,4 @@ COPY . .
 EXPOSE 6001
 
 # Run the application.
-#RUN pm2 start src/API/index.js --name APIWorkflowAutomation -i 2 && pm2 start src/bot/index.js --name BOTWorkflowAutomation 
-# CMD ["pm2-runtime", "src/API/index.js", "pm2-runtime", "src/bot/index.js"]
 CMD ["pm2-runtime", "pm2.ecosystem.config.js"]
-
-#CMD node src/API/index.js

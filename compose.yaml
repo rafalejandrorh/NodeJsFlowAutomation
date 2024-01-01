@@ -18,8 +18,8 @@ services:
       #- 
     #links:
       #- ""
-    environment:
-      NODE_ENV: production
+    #environment:
+      #NODE_ENV: production
     ports:
       - $LOCAL_PORT:$LOCAL_PORT
     expose:

@@ -2,8 +2,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = {
-    env: process.env.NODE_ENV !== 'production',
-    isProd: process.env.NODE_ENV === 'production',
+    env: process.env.NODE_ENV,
+    isProd: process.env.NODE_ENV === 'production' ? true : false,
     port: process.env.LOCAL_PORT || 6000,
     telegram: {
         bot: {
