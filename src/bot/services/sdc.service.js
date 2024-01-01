@@ -1,6 +1,8 @@
 const Moment = require('moment');
 const axios = require('axios');
 
+const { API: { V1: { endpoint : endpointV1 } } } = require('../../../config') 
+
 class SdcService {
 
     constructor() {
@@ -12,7 +14,7 @@ class SdcService {
         let result = '';
         let accessToken, refreshToken = '';
     
-        const { data } = await axios.get('http://localhost:6001/api/v1/SDC/QA/TDP/Token/');
+        const { data } = await axios.get(`${endpointV1}/SDC/QA/TDP/Token/`);
         console.log('updateTdpQaLegacyToken: ', data);
 
         accessToken = `Access Token: \n${data.access_token}`;

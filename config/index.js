@@ -76,5 +76,10 @@ module.exports = {
         port: process.env.MAIL_PORT,
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASSWORD
+    },
+    API: {
+        V1: {
+            endpoint: process.env.API_ENDPOINT_V1
+        }
     }
 };

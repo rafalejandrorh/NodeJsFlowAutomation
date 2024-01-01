@@ -1,6 +1,8 @@
 const Moment = require('moment');
 const axios = require('axios');
 
+const { API: { V1: { endpoint : endpointV1 } } } = require('../../../config') 
+
 //const ExchangeVcoudService = require('../../API/services/dollar.service');
 
 class DollarService {
@@ -16,7 +18,7 @@ class DollarService {
         let name, price, updatedAt = '';
     
         //const dollarPrice = await this.service.getDollarPrice();
-        const { data } = await axios.get('http://localhost:6001/api/v1/dollar/price/');
+        const { data } = await axios.get(`${endpointV1}/dollar/price/`);
         console.log('getDollarPrice: ', data);
     
         for (let index = 0; index < data.length; index++) {

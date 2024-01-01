@@ -1,6 +1,8 @@
 const Moment = require('moment');
 const axios = require('axios');
 
+const { API: { V1: { endpoint : endpointV1 } } } = require('../../../config') 
+
 const User = require('../../API/services/user.service');
 
 class UserService {
@@ -13,7 +15,7 @@ class UserService {
     async login(data) {
         try {
 
-            const user = await axios.post('http://localhost:6000/api/v1/auth/login', data);
+            const user = await axios.post(`${endpointV1}/auth/login`, data);
             //   .then(function (response) {
             //     console.log(response);
             //   })

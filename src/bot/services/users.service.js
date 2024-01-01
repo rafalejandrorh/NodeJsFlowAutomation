@@ -1,6 +1,8 @@
 const Moment = require('moment');
 const axios = require('axios');
 
+const { API: { V1: { endpoint : endpointV1 } } } = require('../../../config') 
+
 const User = require('../../API/services/user.service');
 
 class UserService {
@@ -11,7 +13,7 @@ class UserService {
     }
 
     async register(parameters) {
-        const { data } = await axios.post('http://localhost:6001/api/v1/users/', parameters)
+        const { data } = await axios.post(`${endpointV1}/users/`, parameters)
         return data;
     }
 
