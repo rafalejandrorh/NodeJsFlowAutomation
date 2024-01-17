@@ -8,14 +8,15 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  server:
+  backend:
     container_name: API-Backend-Services
     env_file: 
       - .env
     build:
       context: .
-    #depends_on:
-      #- 
+    depends_on:
+      redis:
+        condition: service_started
     #links:
       #- ""
     #environment:
@@ -26,16 +27,15 @@ services:
       - $LOCAL_PORT
     #extra_hosts:
     #  - "host.docker.internal:host-gateway"
-  # redis:
-  #   image: redis:latest
-  #   container_name: redis
-  #   restart: always
-  #   volumes:
-  #     - redis_volume_data:/data
-  #   ports:
-  #     - 6379:6379
-  # redis_insight:
-  #   image: redislabs/redis_insight
+  redis:
+    image: redis:latest
+    container_name: redis
+    volumes:
+      - db-data:/data
+    ports:
+      - 6379:6379
+volumes:
+  db-data:
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
