@@ -7,7 +7,12 @@ const UserSchema = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+    },
+    uuid: {
+        allowNull: false,
+        type: DataTypes.UUID,
+        default: Sequelize.fn('uuid_generate_v4')
     },
     username: {
         allowNull: false,

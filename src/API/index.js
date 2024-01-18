@@ -1,5 +1,4 @@
 const express = require('express');
-//const cors = require('cors');
 
 require('./utils/auth/strategy');
 
@@ -12,20 +11,6 @@ const port = config.port;
 
 //app.use(express.urlencoded());
 app.use(express.json());
-
-/*
-const whitelist = ['http://localhost:8080'];
-const options = {
-  origin: (origin, callback) => {
-    if (whitelist.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('no permitido'));
-    }
-  }
-}
-app.use(cors(options));
-*/
 
 routes(app);
 
