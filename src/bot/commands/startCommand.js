@@ -1,5 +1,7 @@
 const { telegram: { bot: { replySettingsDefault } } } = require('../../../config');
 
+const { logErrors } = require('../middlewares/error.handler');
+
 module.exports = (bot) => bot.start(async (context) => {
     try {
         fullNameUser = context.from.first_name && context.from.last_name ? `${context.from.first_name} ${context.from.last_name}` : ``;
@@ -12,7 +14,6 @@ module.exports = (bot) => bot.start(async (context) => {
         \nEl Administrador del Bot evaluará tu solicitud y te dará acceso en un plazo menor a 24 horas.`, replySettingsDefault);
 
     } catch (error) {
-        console.log(error);
-        context.reply('Lo sentimos! Ha ocurrido un error');
+        logErrors(context, error);
     }
 });

@@ -1,5 +1,7 @@
 const { telegram: { bot: { replySettingsDefault } } } = require('../../../config');
 
+const { logErrors } = require('../middlewares/error.handler');
+
 const UserService = require('../services/users.service');
 
 const generatePassword = require('../utils/tools/generatePassword');
@@ -43,7 +45,6 @@ module.exports = (bot) => bot.command(['register'], async (context) => {
             context.reply('Usuario registrado exitosamente. Ahora puedes acceder a las herramientas que te brinda nuestro bot.', replySettingsDefault);
         }
     } catch (error) {
-        console.log(error);
-        context.reply(`Lo sentimos! Ha ocurrido un error`);
+        logErrors(context, error);
     }
 });
