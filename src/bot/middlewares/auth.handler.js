@@ -12,7 +12,7 @@ module.exports = (bot) => bot.use(async (context, next) => {
     console.log(user);
     if(user.length === 0) {
         console.log('Usuario NO permitido');
-        context.reply(`Lo Sentimos! No tienes acceso a este Bot`);
+        context.reply(`Lo Sentimos! No tienes acceso a este Bot/Commando`);
     }else{
         console.log('Usuario permitido');
         await next();
