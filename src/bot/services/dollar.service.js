@@ -53,6 +53,48 @@ class DollarService {
         return `${title}${amountToSent}${fee}${amountToReceived}\n\n`;
     }
 
+    async currencyConverter(amount, currencies, source) {
+
+        let dollarPrice = 0;
+        let exchange = 0;
+        let title, currency = '';
+
+        const { data } = await axios.post(`${endpointV1}/dollar/price/${source}`);
+        console.log('currencyConverter: ', data);
+        dollarPrice = data[0].price;
+
+        if(currencies === 'USD') {
+            title = `Conversión de Dólares a Bolivares\n\n`;
+            currency = ` Bs`;
+            exchange = amount * dollarPrice;
+        }
+
+        if(currencies === 'Bs') {
+            title = `Conversión de Bolivares a Dolares\n\n`;
+            currency = ` USD`;
+            exchange = amount / dollarPrice;
+        }
+        console.log('exchange: ', exchange);
+
+        return `${title}${exchange}${currency}`;
+    }
+
+    async getDollarPriceSourcesAllowed() {
+        let result = '';
+        let name, symbol = '';
+    
+        const { data } = await axios.get(`${endpointV1}/dollar/price/sources`);
+        console.log('getDollarPriceSourcesAllowed: ', data);
+        
+        result = `Códigos para consultar Precio del Dólar en base a la cotización de tu preferencia\n\n`
+        for (let index = 0; index < data.length; index++) {
+            name = `${data[index].name}: `;
+            symbol = `${data[index].symbol}`;
+            result = `${result}${name}${symbol}\n\n`;
+        }
+        return result;
+    }
+
 }
 
 module.exports = DollarService;

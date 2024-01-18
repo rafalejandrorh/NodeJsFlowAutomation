@@ -7,8 +7,10 @@ const isBot = require('./middlewares/isBot.handler');
 const start = require('./commands/startCommand');
 const register = require('./commands/registerCommand');
 const updateDollarPrice = require('./commands/updateDollarPriceCommand');
-const updateTdpQaLegacyToken = require('./commands/updateTdpQaLegacyToken');
-const calculatePaypalFees = require('./commands/calculatePaypalFees');
+const updateTdpQaLegacyToken = require('./commands/updateTdpQaLegacyTokenCommand');
+const calculatePaypalFees = require('./commands/calculatePaypalFeesCommand');
+const currencyConverter = require('./commands/currencyConverterCommand');
+const getDollarPriceSourcesAllowed = require('./commands/getDollarSourcesAllowedCommand');
 
 const bot = new Telegraf(token);
 
@@ -24,6 +26,8 @@ auth(bot);
 // Commands With Middlewares
 updateDollarPrice(bot);
 updateTdpQaLegacyToken(bot);
+currencyConverter(bot);
+getDollarPriceSourcesAllowed(bot);
 
 // CronJobs
 cronJobs(bot);

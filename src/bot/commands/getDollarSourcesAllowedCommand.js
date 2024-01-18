@@ -6,10 +6,10 @@ const DollarService = require('../services/dollar.service');
 
 const service = new DollarService();
 
-module.exports = (bot) => bot.command(['updateDollarPrice', 'updatedollarprice'], async (context) => {
+module.exports = (bot) => bot.command(['getDollarPriceSourcesAllowed', 'getdollarpricesourcesallowed'], async (context) => {
 
     try {
-        reply = await service.getDollarPrice();
+        reply = await service.getDollarPriceSourcesAllowed();
         context.reply(reply, replySettingsDefault);
         //context.replyWithMarkdownV2(reply);
     } catch (error) {
