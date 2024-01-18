@@ -4,6 +4,7 @@ const { telegram: { bot: { token } } } = require('../../config');
 const cronJobs = require('./cronJobs');
 const auth = require('./middlewares/auth.handler');
 const isBot = require('./middlewares/isBot.handler');
+const commands = require('./commands/commands');
 const start = require('./commands/startCommand');
 const register = require('./commands/registerCommand');
 const updateDollarPrice = require('./commands/updateDollarPriceCommand');
@@ -15,6 +16,7 @@ const getDollarPriceSourcesAllowed = require('./commands/getDollarSourcesAllowed
 const bot = new Telegraf(token);
 
 // Commands Without Middlewares
+commands(bot);
 start(bot);
 register(bot);
 calculatePaypalFees(bot);
