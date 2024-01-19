@@ -34,6 +34,16 @@ const CommandsSchema = {
         type: DataTypes.DATE,
         field: 'updated_at',
         defaultValue: Sequelize.NOW
+    },
+    instructions: {
+        allowNull: true,
+        type: DataTypes.STRING,
+        field: 'instructions'
+    },
+    hasAuth: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
     }
 }
 
