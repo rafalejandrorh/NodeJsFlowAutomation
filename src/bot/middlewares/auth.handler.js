@@ -9,8 +9,10 @@ module.exports = (bot) => bot.use(async (context, next) => {
     username = context.from.username;
 
     const user = await service.findByTelegramIdAndUsername(username, telegramId);
-    console.log(user);
-    if(user.length === 0) {
+    let isAuth = user.dataValues.is_auth;
+    console.log('is_auth: ', isAuth);
+
+    if(!isAuth) {
         console.log('Usuario NO permitido');
         context.reply(`Lo Sentimos! No tienes acceso a este Bot/Commando`);
     }else{

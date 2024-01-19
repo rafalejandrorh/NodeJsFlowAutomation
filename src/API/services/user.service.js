@@ -42,19 +42,17 @@ class UserService {
     }
 
     async findByTelegramIdAndUsername(username, telegramId) {
-        const user = await this.userModel.findAll({
+        const user = await this.userModel.findOne({
             where: {                
                 username: username,
                 telegramId: telegramId
             },
-            attributes: ['username', 'telegram_id']
+            attributes: ['username', 'telegram_id', 'is_auth']
         });
 
         if(!user) {
             throw boom.notFound('User Not Found');
         }
-
-        //delete user.dataValues.password;
         return user;
     }
 

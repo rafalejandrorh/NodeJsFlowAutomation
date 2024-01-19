@@ -59,6 +59,12 @@ const UserSchema = {
         type: DataTypes.DATE,
         field: 'updated_at',
         defaultValue: Sequelize.NOW
+    },
+    isAuth: {
+        allowNull: true,
+        type: DataTypes.BOOLEAN,
+        field: 'is_auth',
+        defaultValue: false
     }
 }
 
