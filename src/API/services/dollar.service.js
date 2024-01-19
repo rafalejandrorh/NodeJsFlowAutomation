@@ -23,20 +23,17 @@ class DollarService {
             let dataIndex = data[index];
             console.log(`dollarPrice name: ${dataIndex.name}`);
 
-            if(inArray(dataIndex.symbol, this.prices)) {
-                console.log(`inArray: true`);
-
-                dollarPriceFiltered = [
-                    ...dollarPriceFiltered, {
-                        name: dataIndex.name,
-                        price: dataIndex.price,
-                        priceOld: dataIndex.priceOld,
-                        updatedAt: dataIndex.updatedAt
-                    }
-                ]
-            }          
+            dollarPriceFiltered = [
+                ...dollarPriceFiltered, {
+                    name: dataIndex.name,
+                    symbol: dataIndex.symbol,
+                    price: dataIndex.price,
+                    priceOld: dataIndex.priceOld,
+                    updatedAt: dataIndex.updatedAt
+                }
+            ]       
         }
-        console.log('getDollarPrice', dollarPriceFiltered);
+        console.log('API.DollarService.getDollarPrice', dollarPriceFiltered);
         return dollarPriceFiltered;        
     } 
 

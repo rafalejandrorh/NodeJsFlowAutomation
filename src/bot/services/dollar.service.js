@@ -3,36 +3,55 @@ const axios = require('axios');
 
 const { API: { V1: { endpoint : endpointV1 } } } = require('../../../config') 
 
-//const ExchangeVcoudService = require('../../API/services/dollar.service');
+const inArray = require('../utils/tools/inArray');
+
+const cambiosPayScraping = require('../scraping/cambiosPayScraping');
 
 class DollarService {
 
     constructor() {
-        //this.service = new ExchangeVcoudService();
         Moment.locale('es');
         this.paypalFee = 5.4;
+        this.prices = [
+            'VMO',
+            'VES',
+            'VBIN',
+            'VEPAY'
+        ];
     }
 
     async getDollarPrice() {
         let result = '';
-        let name, price, updatedAt = '';
+        let name, price, updatedAtFormat, updatedAt = '';
     
-        //const dollarPrice = await this.service.getDollarPrice();
         const { data } = await axios.get(`${endpointV1}/dollar/price/`);
         console.log('getDollarPrice: ', data);
     
         for (let index = 0; index < data.length; index++) {
-            name = `${data[index].name}`;
-            //name.replace(/\./g, "\\\\.");
-    
-            price = `\nPrecio: ${data[index].price}`;
-            //price.replace(/\./g, "\\\\.")
-    
-            let updatedAtFormat = Moment(data[index].updatedAt).utcOffset('-04:00').format('dddd, MMMM Do YYYY, h:mm:ss a');
-            updatedAt = `\nÚltima Actualización: ${updatedAtFormat}`;
-    
-            result = `${result}${name}${price}${updatedAt}\n\n`;
+            if(inArray(data[index].symbol, this.prices)) {
+                name = `${data[index].name}`; //name.replace(/\./g, "\\\\.");
+                price = `\nPrecio: ${data[index].price}`;
+
+                updatedAtFormat = Moment(data[index].updatedAt).utcOffset('-04:00').format('dddd, MMMM Do YYYY, h:mm:ss a');
+                updatedAt = `\nÚltima Actualización: ${updatedAtFormat}`;
+
+                result = `${result}${name}${price}${updatedAt}\n\n`;
+            }
         }
+
+        return result;
+    }
+
+    async getDollarPriceCambiosPay() {
+        let result = '';
+        let name, price, updatedAtFormat, updatedAt = '';
+    
+        const cambiosPayData = await cambiosPayScraping.getDollarPrice();
+        name = `Dólar Paypal - CambiosPay`
+        price = `\nPrecio: ${cambiosPayData.dolar}`;
+        updatedAtFormat = Moment(cambiosPayData.fecha).utcOffset('-04:00').format('dddd, MMMM Do YYYY, h:mm:ss a');
+        updatedAt = `\nÚltima Actualización: ${updatedAtFormat}`;
+        result = `${result}${name}${price}${updatedAt}`;
 
         return result;
     }

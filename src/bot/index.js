@@ -7,7 +7,8 @@ const isBot = require('./middlewares/isBot.handler');
 const commands = require('./commands/commands');
 const start = require('./commands/startCommand');
 const register = require('./commands/registerCommand');
-const updateDollarPrice = require('./commands/updateDollarPriceCommand');
+const getDollarPrice = require('./commands/getDollarPriceCommand');
+const getDollarPriceCambiosPay = require('./commands/getDollarPriceCambiosPayCommand');
 const updateTdpQaLegacyToken = require('./commands/updateTdpQaLegacyTokenCommand');
 const calculatePaypalFees = require('./commands/calculatePaypalFeesCommand');
 const currencyConverter = require('./commands/currencyConverterCommand');
@@ -20,16 +21,17 @@ commands(bot);
 start(bot);
 register(bot);
 calculatePaypalFees(bot);
+currencyConverter(bot);
+getDollarPriceSourcesAllowed(bot);
 
 // Middlewares
 isBot(bot);
 auth(bot);
 
 // Commands With Middlewares
-updateDollarPrice(bot);
+getDollarPrice(bot);
+getDollarPriceCambiosPay(bot);
 updateTdpQaLegacyToken(bot);
-currencyConverter(bot);
-getDollarPriceSourcesAllowed(bot);
 
 // CronJobs
 cronJobs(bot);
