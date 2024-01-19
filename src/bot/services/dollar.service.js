@@ -1,7 +1,11 @@
 const Moment = require('moment');
 const axios = require('axios');
 
-const { API: { V1: { endpoint : endpointV1 } } } = require('../../../config') 
+const { 
+    API: { V1: { endpoint : endpointV1 } }, 
+    paypal: { paypalFee, paypalFeeAdditional },
+    dollar: { pricesAllowed: { codes: codesDollarPricesAllowed } } 
+} = require('../../../config') 
 
 const inArray = require('../utils/tools/inArray');
 
@@ -11,13 +15,9 @@ class DollarService {
 
     constructor() {
         Moment.locale('es');
-        this.paypalFee = 5.4;
-        this.prices = [
-            'VMO',
-            'VES',
-            'VBIN',
-            'VEPAY'
-        ];
+        this.paypalFee = paypalFee;
+        this.paypalFeeAdditional = paypalFeeAdditional;
+        this.codesDollarPricesAllowed = codesDollarPricesAllowed
     }
 
     async getDollarPrice() {
@@ -28,7 +28,7 @@ class DollarService {
         console.log('getDollarPrice: ', data);
     
         for (let index = 0; index < data.length; index++) {
-            if(inArray(data[index].symbol, this.prices)) {
+            if(inArray(data[index].symbol, this.codesDollarPricesAllowed)) {
                 name = `${data[index].name}`; //name.replace(/\./g, "\\\\.");
                 price = `\nPrecio: ${data[index].price}`;
 
@@ -61,7 +61,7 @@ class DollarService {
         let title, amountWithFee, amountFinalFee, amountReceived, amountToSent, fee, amountToReceived = 0;
     
         amountWithFee = this.paypalFee * amount / 100;
-        amountFinalFee = amountWithFee + 0.30;
+        amountFinalFee = amountWithFee + this.paypalFeeAdditional;
         amountReceived = amount - amountFinalFee;
 
         title = `Calculo de Comisión de Paypal\n`;

@@ -81,5 +81,19 @@ module.exports = {
         V1: {
             endpoint: process.env.API_ENDPOINT_V1
         }
+    },
+    paypal: {
+        paypalFee: 5.4,
+        paypalFeeAdditional: 0.30
+    },
+    dollar: {
+        pricesAllowed: {
+            codes: [
+                'VMO',
+                'VES',
+                'VBIN',
+                'VEPAY'
+            ]
+        }
     }
 };
