@@ -1,3 +1,4 @@
+const boom = require('@hapi/boom');
 const nodemailer = require('nodemailer');
 
 const { smtp: { gmail: { host, port, user, pass } } } = require('../../../config/');
@@ -20,18 +21,19 @@ class MailService {
         });
     }
 
-    async sendMail(emailData) {
+    async sendMail(email, data) {
         try {
             const mail = {
                 from: this.user,
-                to: emailData.mailTo,
-                subject: emailData.subject,
-                html: emailData.html,
+                to: email,
+                subject: data.subject,
+                html: data.html,
             }
             await this.transporter.sendMail(mail);
             return { message: 'mail sent' };
         } catch (error) {
             console.log(error);
+            throw boom.internal();
         }
     }
 }
