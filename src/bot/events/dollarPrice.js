@@ -25,10 +25,10 @@ dollarPriceEvents.on('sendUpdate', async (bot) => {
     // })
 
     // Enviar Actualización del Precio del Dólar por correo
-    emailData.mailTo = 'rafalejandrorivero@gmail.com';
-    emailData.subject = 'Actualización del Precio del Dólar';
-    emailData.html = reply;
-    mailService.sendMail(emailData);
+    // email = 'rafalejandrorivero@gmail.com';
+    // data.subject = 'Actualización del Precio del Dólar';
+    // data.html = reply;
+    // mailService.sendMail(email, data);
 });
 
 module.exports = dollarPriceEvents;
