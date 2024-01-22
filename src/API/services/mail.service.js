@@ -1,8 +1,6 @@
-const boom = require('@hapi/boom');
 const nodemailer = require('nodemailer');
 
-const config = require('../../../config/');
-const { host, port, user, pass } = config.smtpGmail;
+const { smtp: { gmail: { host, port, user, pass } } } = require('../../../config/');
 
 class MailService {
 
