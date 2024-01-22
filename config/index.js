@@ -97,5 +97,14 @@ module.exports = {
                 'VEPAY'
             ]
         }
+    },
+    gitGuardian: {
+        url: process.env.GIT_GUARDIAN_URL,
+        token: process.env.GIT_GUARDIAN_TOKEN,
+        pathHealth: '/health'
+    },
+    exchangeVcoud : {
+        url: process.env.EXCHANGE_VCOUD_URL,
+        pathCoins: '/coins'
     }
 };
