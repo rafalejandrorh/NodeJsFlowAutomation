@@ -1,10 +1,13 @@
 const axios = require('axios');
 
-const inArray = require('../utils/tools/inArray');
+const { exchangeVcoud: { url, pathCoins } } = require('../../../config/');
 
 class DollarService {
 
     constructor() {
+        this.url = url;
+        this.pathCoins = pathCoins;
+        this.typeBolivarBaseUsd = '?type=bolivar&base=usd';
         this.prices = [
             'VMO',
             'VES',
@@ -16,7 +19,7 @@ class DollarService {
     async getDollarPrice() {
 
         let dollarPriceFiltered = [];
-        const { data } = await axios.get('https://exchange.vcoud.com/coins/latest?type=bolivar&base=usd');
+        const { data } = await axios.get(`${this.url}${this.pathCoins}/latest${this.typeBolivarBaseUsd}`);
         console.log('dollarPrice', data);
         
         for (let index = 0; index < data.length; index++) {
@@ -40,7 +43,7 @@ class DollarService {
     async findOneDollarPrice(source) {
 
         let dollarPrice = [];
-        const { data } = await axios.get('https://exchange.vcoud.com/coins/latest?type=bolivar&base=usd');
+        const { data } = await axios.get(`${this.url}${this.pathCoins}/latest${this.typeBolivarBaseUsd}`);
         console.log('dollarPrice', data);
         
         for (let index = 0; index < data.length; index++) {
@@ -68,7 +71,7 @@ class DollarService {
     async getDollarPriceAllowed() {
 
         let dollarPriceFiltered = [];
-        const { data } = await axios.get('https://exchange.vcoud.com/coins/latest?type=bolivar&base=usd');
+        const { data } = await axios.get(`${this.url}${this.pathCoins}/latest${this.typeBolivarBaseUsd}`);
         console.log('dollarPrice', data);
         
         for (let index = 0; index < data.length; index++) {
