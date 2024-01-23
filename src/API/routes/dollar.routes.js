@@ -3,7 +3,7 @@ const passport = require('passport');
 
 const DollarService = require('../services/dollar.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const { findOneDollarSchema } = require('../schemas/dollar.schema');
+const { sourceDollarSchema } = require('../schemas/dollar.schema');
 
 const router = express.Router();
 const service = new DollarService();
@@ -22,7 +22,7 @@ router.get('/price/',
 
 router.post('/price/:source',
     //passport.authenticate('jwt', {session:false}),
-    validatorHandler(findOneDollarSchema, 'params'),
+    validatorHandler(sourceDollarSchema, 'params'),
     async (req, res, next) => {
         try {
             const { source } = req.params;
