@@ -24,9 +24,15 @@ module.exports = (bot) => bot.command(['calculatePaypalFees', 'calculatepaypalfe
             });
             console.log('amount: ', amount);
 
+            if(amount === 0) {
+                throw new Error('Missing Parameters');
+            }
+
             reply = await service.calculatePaypalFees(amount);
             console.log('response calculatePaypalFees: ', reply);
             context.reply(reply, replySettingsDefault);
+        }else{
+            throw new Error('Missing Parameters');
         }
     } catch (error) {
         logErrors(context, error);
