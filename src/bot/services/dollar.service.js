@@ -2,7 +2,7 @@ const Moment = require('moment');
 const axios = require('axios');
 
 const { 
-    API: { V1: { endpoint : endpointV1 } }, 
+    API: { V1: { endpoint: endpointV1 } }, 
     paypal: { paypalFee, paypalFeeAdditional },
     dollar: { pricesAllowed: { codes: codesDollarPricesAllowed } } 
 } = require('../../../config') 

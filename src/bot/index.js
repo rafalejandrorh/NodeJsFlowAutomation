@@ -13,6 +13,9 @@ const updateTdpQaLegacyToken = require('./commands/updateTdpQaLegacyTokenCommand
 const calculatePaypalFees = require('./commands/calculatePaypalFeesCommand');
 const currencyConverter = require('./commands/currencyConverterCommand');
 const getDollarPriceSourcesAllowed = require('./commands/getDollarSourcesAllowedCommand');
+const getCountriesCodes = require('./commands/getCountriesCodesCommand');
+const getTimezoneCodes = require('./commands/geTimezoneCodesCommand');
+const getTime = require('./commands/getTimeCommand');
 
 const bot = new Telegraf(token);
 
@@ -23,6 +26,9 @@ register(bot);
 calculatePaypalFees(bot);
 currencyConverter(bot);
 getDollarPriceSourcesAllowed(bot);
+getCountriesCodes(bot);
+getTimezoneCodes(bot);
+getTime(bot);
 
 // Middlewares
 isBot(bot);
