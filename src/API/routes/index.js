@@ -6,6 +6,7 @@ const dollarRoutes = require('./dollar.routes');
 const sdcRoutes = require('./sdc.routes');
 const commandsRoutes = require('./commands.routes');
 const mailRoutes = require('./mail.routes');
+const timeRoutes = require('./time.routes');
 
 function routes(app) {
     const router = express.Router();
@@ -16,6 +17,7 @@ function routes(app) {
     router.use('/SDC', sdcRoutes);
     router.use('/commands', commandsRoutes);
     router.use('/mail', mailRoutes);
+    router.use('/time', timeRoutes);
 }
 
 module.exports = routes;

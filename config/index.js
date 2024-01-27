@@ -103,7 +103,7 @@ module.exports = {
         token: process.env.GIT_GUARDIAN_TOKEN,
         pathHealth: '/health'
     },
-    exchangeVcoud : {
+    exchangeVcoud: {
         url: process.env.EXCHANGE_VCOUD_URL,
         pathCoins: '/coins'
     }
