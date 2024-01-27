@@ -46,6 +46,8 @@ module.exports = (bot) => bot.command(['currencyConverter', 'currencyconverter']
             reply = await service.currencyConverter(amount, currencies, source);
             console.log('response currencyConverter: ', reply);
             context.reply(reply, replySettingsDefault);
+        }else{
+            throw new Error('Missing Parameters');
         }
     } catch (error) {
         logErrors(context, error);
