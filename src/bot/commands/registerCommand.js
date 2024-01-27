@@ -1,4 +1,7 @@
-const { telegram: { bot: { replySettingsDefault } } } = require('../../../config');
+const { 
+    telegram: { bot: { replySettingsDefault } },
+    regExp: { email: regExpEmail, phone: regExpPhone }
+} = require('../../../config');
 
 const { logErrors } = require('../middlewares/error.handler');
 
@@ -7,9 +10,6 @@ const UserService = require('../services/users.service');
 const generatePassword = require('../utils/tools/generatePassword');
 
 const service = new UserService();
-
-const regexEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
-const regexPhone = /^\+\d{1,3}\d{3,14}$/;
 
 module.exports = (bot) => bot.command(['register'], async (context) => {
 
@@ -30,11 +30,11 @@ module.exports = (bot) => bot.command(['register'], async (context) => {
             payloadSplit = payload.split(' ');
             payloadSplit.forEach(value => {
 
-                if(regexEmail.test(value)) {
+                if(regExpEmail.test(value)) {
                     dataUser.email = value;
                 }
                 
-                if(regexPhone.test(value)) {
+                if(regExpPhone.test(value)) {
                     dataUser.phone = value;
                 }
             });

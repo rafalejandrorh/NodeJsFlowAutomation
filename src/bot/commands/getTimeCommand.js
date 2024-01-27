@@ -1,12 +1,13 @@
-const { telegram: { bot: { replySettingsDefault } } } = require('../../../config');
+const { 
+    telegram: { bot: { replySettingsDefault } }, 
+    regExp: { timezone: regExpTimezone } 
+} = require('../../../config');
 
 const { logErrors } = require('../middlewares/error.handler');
 
 const TimeService = require('../services/time.service');
 
 const service = new TimeService();
-
-const regexTimezone = /^[A-Za-z]+\/[A-Za-z]+$/;
 
 module.exports = (bot) => bot.command(['getTime', 'gettime'], async (context) => {
 
@@ -17,7 +18,7 @@ module.exports = (bot) => bot.command(['getTime', 'gettime'], async (context) =>
             console.log(payload);
             payloadSplit = payload.split(' ');
             payloadSplit.forEach(value => {
-                if(regexTimezone.test(value)) {
+                if(regExpTimezone.test(value)) {
                     timezones.push(value);
                 }
             });
