@@ -1,12 +1,13 @@
-const { telegram: { bot: { replySettingsDefault } } } = require('../../../config');
+const { 
+    telegram: { bot: { replySettingsDefault } }, 
+    regExp: { countryCode: regExpCountryCode } 
+} = require('../../../config');
 
 const { logErrors } = require('../middlewares/error.handler');
 
 const TimeService = require('../services/time.service');
 
 const service = new TimeService();
-
-const regexCountryCode = /^[A-Z]{2}$/;
 
 module.exports = (bot) => bot.command(['getTimezoneCodes', 'gettimezonecodes'], async (context) => {
 
@@ -17,7 +18,7 @@ module.exports = (bot) => bot.command(['getTimezoneCodes', 'gettimezonecodes'], 
             console.log(payload);
             payloadSplit = payload.split(' ');
             payloadSplit.forEach(value => {
-                if(regexCountryCode.test(value)) {
+                if(regExpCountryCode.test(value)) {
                     countryCode = value;
                 }
             });

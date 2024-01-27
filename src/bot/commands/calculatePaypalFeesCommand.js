@@ -1,12 +1,13 @@
-const { telegram: { bot: { replySettingsDefault } } } = require('../../../config');
+const { 
+    telegram: { bot: { replySettingsDefault } }, 
+    regExp: { amount: regExpAmount } 
+} = require('../../../config');
 
 const { logErrors } = require('../middlewares/error.handler');
 
 const DollarService = require('../services/dollar.service');
 
 const service = new DollarService();
-
-const regexAmount = /\d{1,9}$/;
 
 module.exports = (bot) => bot.command(['calculatePaypalFees', 'calculatepaypalfees'], async (context) => {
 
@@ -18,7 +19,7 @@ module.exports = (bot) => bot.command(['calculatePaypalFees', 'calculatepaypalfe
             console.log(payload);
             payloadSplit = payload.split(' ');
             payloadSplit.forEach(value => {
-                if(regexAmount.test(value)) {
+                if(regExpAmount.test(value)) {
                     amount = value;
                 }
             });

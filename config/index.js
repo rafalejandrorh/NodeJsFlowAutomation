@@ -106,5 +106,12 @@ module.exports = {
     exchangeVcoud: {
         url: process.env.EXCHANGE_VCOUD_URL,
         pathCoins: '/coins'
+    },
+    regExp: {
+        amount: /\d{1,9}$/,
+        countryCode: /^[A-Z]{2}$/,
+        timezone: /^[A-Za-z]+\/[A-Za-z]+$/,
+        email: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/,
+        phone: /^\+\d{1,3}\d{3,14}$/
     }
 };

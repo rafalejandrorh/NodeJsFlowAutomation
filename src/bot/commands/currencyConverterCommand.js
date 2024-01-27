@@ -1,4 +1,7 @@
-const { telegram: { bot: { replySettingsDefault } } } = require('../../../config');
+const { 
+    telegram: { bot: { replySettingsDefault } }, 
+    regExp: { amount: regExpAmount } 
+} = require('../../../config');
 
 const inArray = require('../utils/tools/inArray');
 
@@ -8,7 +11,6 @@ const DollarService = require('../services/dollar.service');
 
 const service = new DollarService();
 
-const regexAmount = /\d{1,9}$/;
 const currencyAvailables = [ 'Bs', 'USD' ];
 const sourcesAvailables = [ 'VDT', 'VMO', 'VES', 'VCRIP', 'VBIN', 'VEPAY', 'VEUPH', 'VESKR', 'VEAMZ' ];
 
@@ -23,7 +25,7 @@ module.exports = (bot) => bot.command(['currencyConverter', 'currencyconverter']
             console.log(payload);
             payloadSplit = payload.split(' ');
             payloadSplit.forEach(value => {
-                if(regexAmount.test(value)) {
+                if(regExpAmount.test(value)) {
                     amount = value;
                 }
 
