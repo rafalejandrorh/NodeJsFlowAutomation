@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const country = Joi.string().min(1).max(3);
-const timezone = Joi.string().min(5).max(15);
+const timezone = Joi.string().min(5).max(40);
 
 const countrySchema = Joi.object({
   country: country
