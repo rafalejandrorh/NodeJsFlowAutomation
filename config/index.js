@@ -101,11 +101,18 @@ module.exports = {
     gitGuardian: {
         url: process.env.GIT_GUARDIAN_URL,
         token: process.env.GIT_GUARDIAN_TOKEN,
-        pathHealth: '/health'
+        pathHealth: 'health'
     },
     exchangeVcoud: {
         url: process.env.EXCHANGE_VCOUD_URL,
-        pathCoins: '/coins'
+        pathCoins: 'coins'
+    },
+    ticketPlate: {
+        url: process.env.TICKET_PLATE_URL
+    },
+    cambiosPay: {
+        url: process.env.CAMBIOS_PAY_URL,
+        pathCalculator: 'calculadora-paypal-de-comisiones/'
     },
     regExp: {
         amount: /\d{1,9}$/,

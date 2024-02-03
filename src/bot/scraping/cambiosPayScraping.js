@@ -1,6 +1,10 @@
 const puppeteer = require('puppeteer');
 const moment = require('moment');
 
+const { 
+    cambiosPay: { url, pathCalculator }, 
+} = require('../../../config') 
+
 const time = moment();
 
 async function getDollarPrice() {
@@ -11,7 +15,7 @@ async function getDollarPrice() {
         });
 
         const page = await browser.newPage();
-        await page.goto('https://cambiospay.com/calculadora-paypal-de-comisiones/');
+        await page.goto(`${url}${pathCalculator}`);
 
         const getDollarPrice = await page.evaluate(() => {
             const elements = {};

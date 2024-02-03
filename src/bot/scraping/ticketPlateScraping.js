@@ -1,6 +1,9 @@
 const puppeteer = require('puppeteer');
 
-const { regExp: { conmebolPreOlympicTicket: regExpConmebolPreOlympicTicket } } = require('../../../config') 
+const { 
+    ticketPlate: { url }, 
+    regExp: { conmebolPreOlympicTicket: regExpConmebolPreOlympicTicket } 
+} = require('../../../config') 
 
 async function validatePreOlympicTicketAvailability() {
     try {
@@ -11,7 +14,7 @@ async function validatePreOlympicTicketAvailability() {
         });
 
         const page = await browser.newPage();
-        await page.goto('https://ticketplate.com/');
+        await page.goto(url);
 
         const h5Elements = await page.$$('h5');
 
