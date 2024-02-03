@@ -32,8 +32,8 @@ async function validatePreOlympicTicketAvailability() {
                 preOlympicTickets.push(elements.text);
             }
         }
-        await browser.close();
         
+        await browser.close();
         return preOlympicTickets;
     } catch (error) {
         console.log(error);

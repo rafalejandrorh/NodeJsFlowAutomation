@@ -47,11 +47,15 @@ class DollarService {
         let name, price, updatedAtFormat, updatedAt = '';
     
         const cambiosPayData = await cambiosPayScraping.getDollarPrice();
-        name = `Dólar Paypal - CambiosPay`
-        price = `\nPrecio: ${cambiosPayData.dolar}`;
-        updatedAtFormat = Moment(cambiosPayData.fecha).utcOffset('-04:00').format('dddd, MMMM Do YYYY, h:mm:ss a');
-        updatedAt = `\nÚltima Actualización: ${updatedAtFormat}`;
-        result = `${result}${name}${price}${updatedAt}`;
+        name = `Dólar Paypal - CambiosPay`;
+        if(cambiosPayData.dolar) {
+            price = `\nPrecio: ${cambiosPayData.dolar}`;
+            updatedAtFormat = Moment(cambiosPayData.fecha).utcOffset('-04:00').format('dddd, MMMM Do YYYY, h:mm:ss a');
+            updatedAt = `\nÚltima Actualización: ${updatedAtFormat}`;
+            result = `${name}${price}${updatedAt}`;
+        }else{
+            result = `${name} Lo sentimos, no pudimos obtener información de CambiosPay`;
+        }
 
         return result;
     }
