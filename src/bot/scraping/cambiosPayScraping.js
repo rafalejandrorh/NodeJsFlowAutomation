@@ -20,7 +20,7 @@ async function getDollarPrice() {
         const getDollarPrice = await page.evaluate(() => {
             const elements = {};
     
-            const dollarClass = document.querySelector('span.span.tasa_pp');
+            const dollarClass = document.querySelector('span.tasa__bs');
             console.log('dollarClass: ', dollarClass);
             elements.dolar = dollarClass.innerHTML;
     
