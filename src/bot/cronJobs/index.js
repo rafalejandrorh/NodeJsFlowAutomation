@@ -1,19 +1,20 @@
 const dotenv = require('dotenv');
 const cron = require('node-cron');
-const { exec } = require('child_process');
 
 const dollarPriceCronJobs = require('./dollarPrice');
+const ticketPlateScrapingCronJobs = require('./ticketPlateScraping');
 
 dotenv.config();
 
 module.exports = (bot) => {
 
     // Se ejecutará cada minuto para validar cron
-    cron.schedule('0 * * * * 1,2,3,4,5,6', async () => {
+    cron.schedule('0 * * * * *', async () => {
         console.log('Running Schedule Cron Jobs');
     });
 
     dollarPriceCronJobs(cron, bot);
+    ticketPlateScrapingCronJobs(cron, bot);
 };
 
 // Ejemplos de Formato del Cron

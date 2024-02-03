@@ -112,6 +112,7 @@ module.exports = {
         countryCode: /^[A-Z]{2}$/,
         timezone: /^[A-Za-z]+\/[A-Za-z]+$/,
         email: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/,
-        phone: /^\+\d{1,3}\d{3,14}$/
+        phone: /^\+\d{1,3}\d{3,14}$/,
+        conmebolPreOlympicTicket: /CONMEBOL Preol\.{3}/
     }
 };
