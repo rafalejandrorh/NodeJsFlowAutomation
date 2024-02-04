@@ -15,13 +15,13 @@ class TicketPlaceService {
         const preOlympicTickets = await ticketPlateScraping.validatePreOlympicTicketAvailability();
 
         result = `Boletos Preolímpico: \n\n`;
-        if(preOlympicTickets.length > 0) {
+        if(preOlympicTickets.length) {
             for (let index = 0; index < preOlympicTickets.length; index++) {
                 const element = preOlympicTickets[index];
                 result = `${result}${element}\n`;
             }
         }else{
-            result = `${result} Lo sentimos, no pudimos obtener información de TicketPlate`;
+            result = `${result} Lo sentimos, no pudimos obtener información de TicketPlate\n`;
         }
 
         updatedAtFormat = Moment().utcOffset('-04:00').format('dddd, MMMM Do YYYY, h:mm:ss a');
