@@ -3,7 +3,7 @@ const {
     regExp: { amount: regExpAmount } 
 } = require('../../../config');
 
-const inArray = require('../utils/tools/inArray');
+const { inArray } = require('../utils/tools/');
 
 const { logErrors } = require('../middlewares/error.handler');
 

@@ -2,8 +2,6 @@ const axios = require('axios');
 
 const { API: { V1: { endpoint: endpointV1 } } } = require('../../../config') 
 
-const inArray = require('../utils/tools/inArray');
-
 class TimeService {
 
     constructor() {

@@ -7,7 +7,7 @@ const {
     dollar: { pricesAllowed: { codes: codesDollarPricesAllowed } } 
 } = require('../../../config') 
 
-const inArray = require('../utils/tools/inArray');
+const { inArray } = require('../utils/tools/');
 
 const cambiosPayScraping = require('../scraping/cambiosPayScraping');
 

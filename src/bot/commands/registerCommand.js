@@ -7,7 +7,7 @@ const { logErrors } = require('../middlewares/error.handler');
 
 const UserService = require('../services/users.service');
 
-const generatePassword = require('../utils/tools/generatePassword');
+const { generatePassword } = require('../utils/tools/');
 
 const service = new UserService();
 
