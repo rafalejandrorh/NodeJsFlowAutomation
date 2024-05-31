@@ -121,5 +121,8 @@ module.exports = {
         email: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/,
         phone: /^\+\d{1,3}\d{3,14}$/,
         conmebolPreOlympicTicket: /CONMEBOL Preol\.{3}/
+    },
+    gemini: {
+        apiKey: process.env.GEMINI_AI_API_KEY
     }
 };

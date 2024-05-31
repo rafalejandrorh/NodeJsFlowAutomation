@@ -7,6 +7,7 @@ const sdcRoutes = require('./sdc.routes');
 const commandsRoutes = require('./commands.routes');
 const mailRoutes = require('./mail.routes');
 const timeRoutes = require('./time.routes');
+const geminiRoutes = require('./gemini.routes');
 
 function routes(app) {
     const router = express.Router();
@@ -18,6 +19,7 @@ function routes(app) {
     router.use('/commands', commandsRoutes);
     router.use('/mail', mailRoutes);
     router.use('/time', timeRoutes);
+    router.use('/gemini', geminiRoutes);
 }
 
 module.exports = routes;
