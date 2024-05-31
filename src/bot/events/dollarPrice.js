@@ -10,7 +10,7 @@ const MailService = require('../services/mail.service');
 const mailService = new MailService();
 
 dollarPriceEvents.on('sendUpdate', async (bot) => {
-    let emailData = {};
+    let data = {};
 
     console.log(`sending update of Dollar price to All Users`);
     reply = await dollarPriceService.getDollarPrice();

@@ -14,7 +14,6 @@ module.exports = (bot) => {
     });
 
     dollarPriceCronJobs(cron, bot);
-    ticketPlateScrapingCronJobs(cron, bot);
 };
 
 // Ejemplos de Formato del Cron
