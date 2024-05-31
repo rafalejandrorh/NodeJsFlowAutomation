@@ -32,17 +32,19 @@ function ormErrorHandler(err, req, res, next) {
 }
 
 function httpErrorHandler(err, req, res, next) {
-  isHttpError = err.response.status !== 200 ? true : false;
-  statusCode = err.response.status;
-  statusText = err.response.statusText;
-  statusDescription = err.response.data.message;
-
-  if(isHttpError) {
-    res.status(statusCode).json({
-      statusCode: statusCode,
-      message: statusText,
-      errors: statusDescription
-    });
+  if(err.response) {
+    isHttpError = err.response.status !== 200 ? true : false;
+    statusCode = err.response.status;
+    statusText = err.response.statusText;
+    statusDescription = err.response.data.message;
+  
+    if(isHttpError) {
+      res.status(statusCode).json({
+        statusCode: statusCode,
+        message: statusText,
+        errors: statusDescription
+      });
+    }
   }
   next(err);
 }
