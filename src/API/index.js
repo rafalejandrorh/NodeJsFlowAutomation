@@ -15,7 +15,7 @@ app.use(express.json());
 routes(app);
 
 app.use((req, res) => {
-  res.status(404).send('Page not found | 404')
+  res.status(404).json({message:'Page not found | 404'})
 });
 
 app.use(logErrors);
